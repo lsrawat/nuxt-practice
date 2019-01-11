@@ -1,0 +1,57 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A simple todo list.",
+  "author": "lakshit.rawat",
+  "scripts": {
+    "build": "nuxt build",
+    "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "dev": "nuxt",
+    "generate": "nuxt generate",
+    "precommit": "npm run lint",
+    "start": "nuxt start",
+    "test:unit": "vue-cli-service test:unit"
+  },
+  "dependencies": {
+    "@nuxtjs/component-cache": "^1.1.4",
+    "axios": "^0.18.0",
+    "lru-cache": "^5.1.1",
+    "nuxt": "^2.0.0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-unit-jest": "^3.3.0",
+    "@vue/cli-service": "^3.3.0",
+    "@vue/test-utils": "^1.0.0-beta.28",
+    "babel-eslint": "^10.0.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-friendly-formatter": "^4.0.1",
+    "eslint-loader": "^2.1.1",
+    "eslint-plugin-vue": "^4.0.0",
+    "jest": "^23.6.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "jsx",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.vue$": "vue-jest",
+      ".+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$": "jest-transform-stub",
+      "^.+\\.jsx?$": "babel-jest"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "snapshotSerializers": [
+      "jest-serializer-vue"
+    ],
+    "testMatch": [
+      "**/tests/unit/**/*.spec.(js|jsx|ts|tsx)|**/__tests__/*.(js|jsx|ts|tsx)"
+    ],
+    "testURL": "http://localhost/"
+  }
+}
