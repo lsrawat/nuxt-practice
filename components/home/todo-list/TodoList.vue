@@ -57,7 +57,8 @@ export default {
      * params: {todo: new todo object}
      */
     addTodoToList(todo) {
-      this.pending.push(todo);
+      // this.pending.push(todo); to add at the top of the list
+      this.pending.unshift(todo);
     },
     /**
      * desc: Remove todo from pending list and add to completed list.
