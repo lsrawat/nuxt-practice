@@ -4,11 +4,14 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 const INCREMENT_ID = "INCREMENT_ID";
-const SET_CURRENT_ID = "SET_CURRENT_ID"
+const SET_CURRENT_ID = "SET_CURRENT_ID";
+const SET_TODOS = "SET_TODOS";
 
-export default () => new Vuex.Store({
+
+const store = new Vuex.Store({
   state: {
-    currentId: 0
+    currentId: 0,
+    todoList: []
   },
   mutations: {
     [INCREMENT_ID](state) {
@@ -16,16 +19,19 @@ export default () => new Vuex.Store({
     },
     [SET_CURRENT_ID](state, currentId) {
       state.currentId = currentId
-    }
+    },
+    [SET_TODOS](state, todos) {
+      state.todoList = todos.slice();
+    },
   },
   getters: {
     currentId: state => {
       return state.currentId
-    }
-  },
-  actions: {
-    setCurrentId({commit}, value) {
-      commit('SET_CURRENT_ID', value)
+    },
+    todoList: state => {
+      return state.todoList
     }
   }
 })
+
+export default () => store;

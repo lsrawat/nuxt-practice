@@ -1,32 +1,33 @@
 <template>
   <section class="container">
     <div>
-      <todo-list :todos="todos"></todo-list>
+      <todo-list></todo-list>
     </div>
   </section>
 </template>
 
 <script>
-import TodoList from '~/components/home/todo-list/TodoList.vue';
-import axios from 'axios';
+import TodoList from "~/components/home/todo-list/TodoList.vue";
+import storeService from '~/services/store-service.js';
+import axios from "axios";
 
 export default {
-  async asyncData() {
+  async fetch({store}) {
     try {
       console.log("data call made");
       let { data } = await axios.get(
         "https://jsonplaceholder.typicode.com/todos"
       );
-      return { todos: data };
+      console.log(data);
+      storeService.setTodos(data);
     } catch (e) {
       console.log(e);
     }
   },
-  // middleware:{},
   components: {
     TodoList
   }
-}
+};
 </script>
 
 <style>
@@ -35,11 +36,11 @@ export default {
   display: flex;
   justify-content: center;
   padding: 20px 40px;
-     
 }
 
 .title {
-  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; /* 1 */
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;
@@ -59,24 +60,24 @@ export default {
   padding-top: 15px;
 }
 
-.btn{
-    padding: 6px 12px;
-    border-radius: 5px;
-    color: #333;
-    background-color: #eee;
-    border: 1px solid #dedede;
-    box-shadow: 0px 2px 4px -2px rgba(0,0,0,0.14);
+.btn {
+  padding: 6px 12px;
+  border-radius: 5px;
+  color: #333;
+  background-color: #eee;
+  border: 1px solid #dedede;
+  box-shadow: 0px 2px 4px -2px rgba(0, 0, 0, 0.14);
 }
-.btn:focus{
+.btn:focus {
   outline: none;
 }
-.btn:active{
+.btn:active {
   box-shadow: none;
 }
-.btn--green{
-  background-color: #66BB6A;
+.btn--green {
+  background-color: #66bb6a;
 }
-.btn--blue{
+.btn--blue {
   background-color: #2196f3;
 }
 </style>
