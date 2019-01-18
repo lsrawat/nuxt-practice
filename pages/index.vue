@@ -18,7 +18,6 @@ export default {
       let { data } = await axios.get(
         "https://jsonplaceholder.typicode.com/todos"
       );
-      console.log(data);
       storeService.setTodos(data);
     } catch (e) {
       console.log(e);

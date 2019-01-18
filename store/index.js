@@ -7,7 +7,6 @@ const INCREMENT_ID = "INCREMENT_ID";
 const SET_CURRENT_ID = "SET_CURRENT_ID";
 const SET_TODOS = "SET_TODOS";
 
-
 const store = new Vuex.Store({
   state: {
     currentId: 0,
