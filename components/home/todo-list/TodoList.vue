@@ -23,7 +23,7 @@ import TodoListItemPending from "@/components/home/todo-list/TodoListItemPending
 import AddTodo from "@/components/home/AddTodo.vue";
 import todoFilterMixin from "@/mixins/todoFilterMixin.js";
 import { mapGetters } from "vuex";
-import storeService from "~/services/store-service.js";
+import storeService from "../../../services/store-service.js";
 
 export default {
   components: {
