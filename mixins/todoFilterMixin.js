@@ -1,6 +1,7 @@
 export default {
   methods: {
-    filterCompletionStatus: function (list, status) {
+    listFilterByStatus(list, status) {
+      console.log(list);
       return list.filter(item => item.completed === status);
     }
   }
