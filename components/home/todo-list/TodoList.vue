@@ -21,8 +21,9 @@
 import TodoListItemCompleted from "@/components/home/todo-list/TodoListItemCompleted.vue";
 import TodoListItemPending from "@/components/home/todo-list/TodoListItemPending.vue";
 import AddTodo from "@/components/home/AddTodo.vue";
-import axios from "axios";
 import todoFilterMixin from "@/mixins/todoFilterMixin.js";
+import { mapGetters } from "vuex";
+import storeService from "~/services/store-service.js";
 
 export default {
   components: {
@@ -31,47 +32,42 @@ export default {
     AddTodo
   },
   mixins: [todoFilterMixin],
-  data: function() {
-    return {
-      completed: [],
-      pending: []
-    };
-  },
-  props: {
-    todos: Array
+  computed: {
+    ...mapGetters(["todoList"]),
+    completed: function() {
+      return this.listFilterByStatus(this.todoList, true);
+    },
+    pending: function() {
+      return this.listFilterByStatus(this.todoList, false);
+    }
   },
   /**
-   * desc: Set current id in store and seperate the pending and completed lists.
+   * desc: Set current id in store for mantaining key in v-for.
    * return: none
    * params: none
    */
   mounted() {
-    this.$store.dispatch('setCurrentId', this.todos.length);
-    this.completed = this.filterCompletionStatus(this.todos, true);
-    this.pending = this.filterCompletionStatus(this.todos, false);
+    storeService.setCurrentId(this.todoList.length);
   },
   methods: {
     /**
-     * desc: Add todo to pending todos list.
+     * desc: Add todo to todos list. Will automatically move to pending because of computed.
      * return: none
      * params: {todo: new todo object}
      */
     addTodoToList(todo) {
-      // this.pending.push(todo); to add at the top of the list
-      this.pending.unshift(todo);
+      this.todoList.unshift(todo);
+      storeService.setTodos(this.todoList);
     },
     /**
-     * desc: Remove todo from pending list and add to completed list.
-     * Need to store this in store/ make this persistent using services
+     * desc: mark todo as completed. Computed will automatically filter the list.
      * return: none
      * params: {todo: todo object from pending list}
      */
-    onMarkAsComplete({todo, index}) {
+    onMarkAsComplete(todo) {
       todo.completed = true;
-      this.pending.splice(index, 1);
-      this.completed.push(todo);
     }
-  },
+  }
 };
 </script>
 <style>

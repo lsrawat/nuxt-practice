@@ -21,7 +21,7 @@ export default {
   methods: {
     onMarkAsCompleted() {
       console.log(this.todo);
-      this.$emit("mark-as-complete", { todo: this.todo, index: this.index });
+      this.$emit("mark-as-complete", this.todo);
     }
   }
 };
