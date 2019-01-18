@@ -5,6 +5,8 @@ npm install
 npm run dev
 ```
 ### Test cases
+Run the following command at root after cloning the project.
+
 ```
 npm run test:unit
 ```
