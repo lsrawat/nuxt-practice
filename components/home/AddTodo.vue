@@ -7,7 +7,7 @@
 <script>
 
 import { mapGetters } from 'vuex';
-import storeService from '~/services/store-service';
+import storeService from '../../services/store-service.js';
 
 /**
  * desc: returns initalizing data for a new todo
@@ -39,13 +39,13 @@ export default {
      * params: none
      */
     addTodo() {
-      if (this.todo.title.trim() !== "") {
+      // if (this.todo.title.trim() !== "") {
         // for mantaining the ids in todolist.
         storeService.incrementId();
         this.todo.id = this.currentId;
         this.$emit("add-todo", this.todo);
         this.todo = initTodo();
-      }
+      // }
     }
   }
 };
