@@ -1,3 +1,5 @@
+const cache = require('./utils/cache');
+
 module.exports = {
   /*
   ** Headers of the page
@@ -15,13 +17,24 @@ module.exports = {
       {rel: 'canonical', href:'http://www.sitename.com'}
     ]
   },
+  serverMiddleware:[
+    '~/serverMiddlewares/cache.js'
+  ],
   /*
   ** Customize the progress bar color
   */
-  modules:[
-    '@nuxtjs/component-cache'
-  ],
   loading: { color: '#3B8070' },
+  /**
+   * Hooks information. Used render here for caching the rendered HTML data. 
+   */
+  hooks:{
+    render:{
+      routeDone(url, result, context) {
+        console.log(url);
+        cache.set(String(url), result.html);
+      }
+    }
+  },
   /*
   ** Build configuration
   */
