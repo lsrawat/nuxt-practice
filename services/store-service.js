@@ -1,19 +1,23 @@
 import Store from '../store/index';
 
-const localStore = Store();
+const store = Store();
 
-function setTodos (todos) {
-  localStore.commit("SET_TODOS", todos);
+function setTodosById ({todos, id}) {
+  store.commit("SET_TODOS_BY_ID", {todos, id});
 };
 function setCurrentId(id) {
-  localStore.commit('SET_CURRENT_ID', id)
-}
+  store.commit('SET_CURRENT_ID', id)
+};
 function incrementId() {
-  localStore.commit('INCREMENT_ID');
+  store.commit('INCREMENT_ID');
+};
+function setUsers(users) {
+  store.commit('SET_USERS', users)
 }
 
 export default {
-  setTodos,
+  setTodosById,
   setCurrentId,
-  incrementId
+  incrementId,
+  setUsers
 };

@@ -1,31 +1,33 @@
 <template>
   <section class="container">
     <div>
-      <todo-list></todo-list>
+      <user-list></user-list>
     </div>
   </section>
 </template>
 
 <script>
-import TodoList from "~/components/home/todo-list/TodoList.vue";
 import storeService from '~/services/store-service.js';
-import axios from "axios";
+import http from '~/services/http.js';
+import UserList from '~/components/home/user-list/UserList.vue';
 
 export default {
   async fetch({store}) {
     try {
       console.log("data call made");
-      let { data } = await axios.get(
-        "https://jsonplaceholder.typicode.com/todos"
+      console.log(http);
+      let { data } = await http.get(
+        "https://jsonplaceholder.typicode.com/users"
       );
       console.log(data);
-      storeService.setTodos(data);
+      storeService.setUsers(data);
     } catch (e) {
       console.log(e);
     }
   },
+  
   components: {
-    TodoList
+    UserList
   }
 };
 </script>

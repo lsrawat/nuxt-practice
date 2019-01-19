@@ -24,6 +24,7 @@ import AddTodo from "@/components/home/AddTodo.vue";
 import todoFilterMixin from "@/mixins/todoFilterMixin.js";
 import { mapGetters } from "vuex";
 import storeService from "../../../services/store-service.js";
+import api from '../../../services/http.js';
 
 export default {
   components: {
@@ -33,12 +34,18 @@ export default {
   },
   mixins: [todoFilterMixin],
   computed: {
-    ...mapGetters(["todoList"]),
+    ...mapGetters(["allTodos"]),
     completed: function() {
-      return this.listFilterByStatus(this.todoList, true);
+      return this.listFilterByStatus(this.$store.getters.todosById(this.userId), true);
     },
     pending: function() {
-      return this.listFilterByStatus(this.todoList, false);
+      return this.listFilterByStatus(this.$store.getters.todosById(this.userId), false);
+    }
+  },
+  props:{
+    userId:{
+      type: Number,
+      default: 0
     }
   },
   /**
@@ -47,7 +54,7 @@ export default {
    * params: none
    */
   mounted() {
-    storeService.setCurrentId(this.todoList.length);
+    // storeService.setCurrentId(this.todoList.length);
   },
   methods: {
     /**
