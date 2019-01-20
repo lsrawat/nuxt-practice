@@ -11,7 +11,8 @@
     "generate": "nuxt generate",
     "precommit": "npm run lint",
     "start": "nuxt start",
-    "test:unit": "vue-cli-service test:unit"
+    "test:unit": "vue-cli-service test:unit",
+    "test:coverage": "jest --coverage"
   },
   "dependencies": {
     "@nuxtjs/component-cache": "^1.1.4",
