@@ -1,6 +1,6 @@
 How to run the project:
 1. Move to root directory.
-2. Run cmd:  npm intall
+2. Run cmd:  npm install
 3. Run cmd: npm run dev
 
 Assignment:
