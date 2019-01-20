@@ -1,13 +1,12 @@
 <template>
   <div class="input-container">
-    <input type="text" v-model="todo.title">
-    <button @click="addTodo()" class="btn btn--green">Add Todo</button>
+    <input type="text" v-model="todo.title" required>
+    <button @click="addTodo()" :disabled="!todo.title" class="btn btn--green">Add Todo</button>
   </div>
 </template>
 <script>
-
-import { mapGetters } from 'vuex';
-import storeService from '../../services/store-service.js';
+import { mapGetters } from "vuex";
+import storeService from "../../services/store-service.js";
 
 /**
  * desc: returns initalizing data for a new todo
@@ -29,8 +28,11 @@ export default {
       todo: initTodo()
     };
   },
-  computed: {
-    ...mapGetters(['currentId'])
+  props: {
+    todoId: {
+      default: 0,
+      type: Number
+    }
   },
   methods: {
     /**
@@ -39,13 +41,10 @@ export default {
      * params: none
      */
     addTodo() {
-      // if (this.todo.title.trim() !== "") {
-        // for mantaining the ids in todolist.
-        storeService.incrementId();
-        this.todo.id = this.currentId;
-        this.$emit("add-todo", this.todo);
-        this.todo = initTodo();
-      // }
+      // for mantaining the ids in todolist.
+      this.todo.id = this.todoId;
+      this.$emit("add-todo", this.todo);
+      this.todo = initTodo();
     }
   }
 };

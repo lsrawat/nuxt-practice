@@ -14,10 +14,13 @@ function incrementId() {
 function setUsers(users) {
   store.commit('SET_USERS', users)
 }
-
+function addTodoByUser(todo, id) {
+  store.commit('ADD_TODO_BY_USER', {todo, id})
+}
 export default {
   setTodosById,
   setCurrentId,
   incrementId,
-  setUsers
+  setUsers,
+  addTodoByUser
 };

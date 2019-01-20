@@ -1,6 +1,6 @@
 <template>
   <div>
-    <add-todo @add-todo="addTodoToList($event)"></add-todo>
+    <add-todo @add-todo="addTodoToList($event)" :todoId="todoId"></add-todo>
     <h1>Pending</h1>
     <ul>
       <todo-list-item-pending
@@ -32,14 +32,25 @@ export default {
     TodoListItemPending,
     AddTodo
   },
+  data() {
+    return{
+      todoId: 0
+    }
+  },
   mixins: [todoFilterMixin],
   computed: {
-    ...mapGetters(["allTodos"]),
+    ...mapGetters(['allTodos']),
     completed: function() {
-      return this.listFilterByStatus(this.$store.getters.todosById(this.userId), true);
+      return this.listFilterByStatus(this.allTodos[this.userId], true);
     },
     pending: function() {
-      return this.listFilterByStatus(this.$store.getters.todosById(this.userId), false);
+      console.log("pending called")
+      return this.listFilterByStatus(this.allTodos[this.userId], false);
+    },
+  },
+  watch:{
+    allTodos:function(newVal, oldVal) {
+      console.log('changed');
     }
   },
   props:{
@@ -48,14 +59,6 @@ export default {
       default: 0
     }
   },
-  /**
-   * desc: Set current id in store for mantaining key in v-for.
-   * return: none
-   * params: none
-   */
-  mounted() {
-    // storeService.setCurrentId(this.todoList.length);
-  },
   methods: {
     /**
      * desc: Add todo to todos list. Will automatically move to pending because of computed.
@@ -63,8 +66,11 @@ export default {
      * params: {todo: new todo object}
      */
     addTodoToList(todo) {
-      this.todoList.unshift(todo);
-      storeService.setTodos(this.todoList);
+      // this.pending.unshift(todo);
+      storeService.addTodoByUser(todo, this.userId);
+      this.todoId++;
+      this.$forceUpdate();
+      // storeService.setTodos(this.todoList);
     },
     /**
      * desc: mark todo as completed. Computed will automatically filter the list.
@@ -78,15 +84,5 @@ export default {
 };
 </script>
 <style>
-ul {
-  padding-left: 0;
-}
-li {
-  list-style: none;
-  display: flex;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 2px;
-  margin-top: 2px;
-  padding: 8px 10px;
-}
+
 </style>
