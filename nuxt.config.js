@@ -15,6 +15,9 @@ module.exports = {
       {rel: 'canonical', href:'http://www.sitename.com'}
     ]
   },
+  css:[
+    '~/css/main.css'
+  ],
   /*
   ** Customize the progress bar color
   */
