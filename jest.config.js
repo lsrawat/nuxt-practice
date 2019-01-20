@@ -13,6 +13,11 @@ module.exports = {
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/$1'
   },
+  "collectCoverage": true,
+  "collectCoverageFrom": [
+    "**/*.{js,vue}",
+    "!**/node_modules/**"
+  ],
   snapshotSerializers: [
     'jest-serializer-vue'
   ],

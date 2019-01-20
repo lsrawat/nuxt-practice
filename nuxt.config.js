@@ -1,4 +1,4 @@
-const cache = require('./utils/cache');
+const cache = require('./utils/cache').getInstance();
 
 module.exports = {
   /*
@@ -31,7 +31,9 @@ module.exports = {
     render:{
       routeDone(url, result, context) {
         console.log(url);
-        cache.set(String(url), result.html);
+        console.log("render done");
+        // console.log(cache);
+        cache.setCache(String(url), result.html);
       }
     }
   },

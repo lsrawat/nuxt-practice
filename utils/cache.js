@@ -1,14 +1,49 @@
-const LRU = require("lru-cache")
-  , options = {
-    max: 500000
-    , maxAge: 1000 * 60 * 60
-  }
-  , cache = new LRU(options);
+// function cacheService() {
+//   let cache = {};
+//   console.log('running cache service');
 
-exports.set = function (key, value) {
-  cache.set(key, value);
-}
+//   function set(key, value) {
+//     console.log(value);
+//     cache[key] = value;
+//   }
 
-exports.get = function (key) {
-  return cache.get(key);
-}
+//   function get(key) {
+//     return cache[key];
+//   }
+
+//   return {
+//     get,
+//     set
+//   }
+// }
+
+// module.exports = cacheService();
+
+
+var cacheService = (function () {
+  let instance;
+  function init() {
+    let cache = {};
+    console.log('cache initialized');
+    return {
+      getCache(key) {
+        console.log();
+        return cache[key];
+      },
+      setCache(key, value) {
+        cache[key] = value; 
+      }
+    };
+  };
+
+  return {
+    getInstance () {
+      if ( !instance ) {
+        instance = init();
+      }
+      return instance;
+    }
+  };
+})();
+
+module.exports = cacheService;
