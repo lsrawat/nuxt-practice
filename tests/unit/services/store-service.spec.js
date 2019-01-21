@@ -18,6 +18,7 @@ describe('store-service.js', () => {
   it('method: setUsers should set users', (done) => {
     storeService.setUsers(users);
     expect(store.state.userList.length).toBe(2);
+    done();
   })
 
   it('method: addTodoByUser should add todo to the respective user', (done) => {
@@ -28,5 +29,6 @@ describe('store-service.js', () => {
     expect(prevAllTodos !== newAllTodos).toBe(true);
     expect(store.state.allTodos[1].length).toBe(3);
     expect(store.state.allTodos[1][0] === newTodo).toBe(true);
+    done();
   })
 })
