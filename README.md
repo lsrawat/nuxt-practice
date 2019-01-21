@@ -5,10 +5,11 @@ npm install
 npm run dev
 ```
 ### Test cases
-Run the following command at root after cloning the project.
+Run the following command at root after cloning the project for unit tests and coverage.
 
 ```
 npm run test:unit
+npm run test:coverage
 ```
 
 #### Assignment:
