@@ -3,8 +3,6 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
-// const INCREMENT_ID = "INCREMENT_ID";
-// const SET_CURRENT_ID = "SET_CURRENT_ID";
 const SET_TODOS_BY_ID = "SET_TODOS_BY_ID";
 const SET_USERS = "SET_USERS";
 const ADD_TODO_BY_USER = "ADD_TODO_BY_USER";
