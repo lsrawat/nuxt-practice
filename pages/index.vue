@@ -1,8 +1,6 @@
 <template>
   <section class="container">
-    <div>
       <user-list></user-list>
-    </div>
   </section>
 </template>
 

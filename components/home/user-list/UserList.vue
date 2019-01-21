@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="user-list">
     <user-list-item v-for="(user, index) in userList" :key="user.id" :user="user" :index="index"></user-list-item>
   </section>
 </template>
@@ -16,3 +16,9 @@ export default {
   }
 };
 </script>
+<style scoped>
+  .user-list{
+    display: block;
+    
+  }
+</style>

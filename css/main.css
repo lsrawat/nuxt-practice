@@ -1,7 +1,6 @@
 .container {
   min-height: 100vh;
   display: flex;
-  justify-content: center;
   padding: 20px 40px;
 }
 
@@ -57,4 +56,14 @@ li {
   border-radius: 2px;
   margin-top: 2px;
   padding: 8px 10px;
+}
+
+a:hover{
+  cursor: pointer;
+  color: #2196f3;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-top:10px;
+  margin-bottom:15px;
 }

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="todo-list">
     <add-todo @add-todo="addTodoToList($event)" :todoId="todoId"></add-todo>
     <h1>Pending</h1>
     <ul>
@@ -24,7 +24,6 @@ import AddTodo from "@/components/home/AddTodo.vue";
 import todoFilterMixin from "@/mixins/todoFilterMixin.js";
 import { mapGetters } from "vuex";
 import storeService from "../../../services/store-service.js";
-import api from '../../../services/http.js';
 
 export default {
   components: {
@@ -40,18 +39,15 @@ export default {
   mixins: [todoFilterMixin],
   computed: {
     ...mapGetters(['allTodos']),
+    /**
+     * return: the pending and completed when the state of allTodos mutates. 
+     */
     completed: function() {
       return this.listFilterByStatus(this.allTodos[this.userId], true);
     },
     pending: function() {
-      console.log("pending called")
       return this.listFilterByStatus(this.allTodos[this.userId], false);
     },
-  },
-  watch:{
-    allTodos:function(newVal, oldVal) {
-      console.log('changed');
-    }
   },
   props:{
     userId:{
@@ -61,12 +57,11 @@ export default {
   },
   methods: {
     /**
-     * desc: Add todo to todos list. Will automatically move to pending because of computed.
+     * desc: Add todo to todos list. Will automatically move to pending because of computed property.
      * return: none
      * params: {todo: new todo object}
      */
     addTodoToList(todo) {
-      // this.pending.unshift(todo);
       storeService.addTodoByUser(todo, this.userId);
       this.todoId++;
     },
@@ -82,5 +77,7 @@ export default {
 };
 </script>
 <style>
-
+  .todo-list{
+    width:100%;
+  }
 </style>

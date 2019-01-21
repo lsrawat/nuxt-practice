@@ -28,9 +28,7 @@ describe('TodoListItemPending.vue', () => {
     const markAsCompleteButton = wrapper.find('button');
     markAsCompleteButton.trigger('click');
     expect(wrapper.vm.onMarkAsCompleted).toBeCalled();
-
-    // expect(wrapper.emitted()['mark-as-complete']).toBe(true);
-    done()
+    done();
   })
   it('emits an mark-as-complete of function calling onMarkAsCompleted', (done) => {
     wrapper.vm.onMarkAsCompleted();

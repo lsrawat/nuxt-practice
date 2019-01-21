@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <todo-list :userId="userId"></todo-list>
   </div>
 </template>
@@ -24,7 +24,6 @@ export default {
        const { data } = await api.get(
         `https://jsonplaceholder.typicode.com/todos?userId=${id}`
       );
-      // console.log(todos)
       storeService.setTodosById({todos:data, id});
     }
   },

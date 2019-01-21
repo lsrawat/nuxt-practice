@@ -1,6 +1,6 @@
 <template>
   <li>
-    <a @click="routeToTodos">{{user.name}}</a>
+    <a @click="routeToTodos"><h3>{{user.name}}</h3></a>
   </li>
 </template>
 <script>
@@ -20,6 +20,6 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 
 </style>
