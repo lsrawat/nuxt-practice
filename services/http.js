@@ -1,9 +1,4 @@
 const axios = require('axios');
-
-const queryBuilder = function() {
-  
-}
-
 /**
  * 
  * @param String url; desc: The url of the API request

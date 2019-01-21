@@ -26,13 +26,20 @@ describe('AddTodo.vue', () => {
     done();
   })
 
-  it('should emit a todo object on button click and increment id.', (done) => {
+  it('model changed on user input to correct value', (done) => {
+    wrapper.vm.addTodo = jest.fn();
+    wrapper.vm.todo = { title: '' };
+    wrapper.find('input').setValue('dummyTodo');
     const button = wrapper.find('button');
     button.trigger('click');
-    expect(storeService.incrementId).toBeCalled();
-    expect(wrapper.vm.currentId).toEqual(wrapper.vm.todo.id);
-    wrapper.vm.$emit('add-todo', wrapper.vm.todo);
-    expect(wrapper.emitted()['add-todo'][0]).toEqual([wrapper.vm.todo]);
+    expect(wrapper.vm.addTodo).toBeCalled();
+    expect(wrapper.vm.todo.title === 'dummyTodo').toBe(true);
+    done();
+  })
+  
+  it('method: addTodo should emit add-todo when called', (done) => {
+    wrapper.vm.addTodo();
+    expect(wrapper.emitted()['add-todo'][0].length).toBe(1);
     done();
   })
 

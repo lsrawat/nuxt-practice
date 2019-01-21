@@ -69,8 +69,6 @@ export default {
       // this.pending.unshift(todo);
       storeService.addTodoByUser(todo, this.userId);
       this.todoId++;
-      this.$forceUpdate();
-      // storeService.setTodos(this.todoList);
     },
     /**
      * desc: mark todo as completed. Computed will automatically filter the list.

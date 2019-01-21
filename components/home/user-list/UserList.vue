@@ -1,7 +1,6 @@
 <template>
   <section>
-    <user-list-item v-for="(user, index) in users" :key="user.id" :user="user" :index="index"></user-list-item>
-    <!-- <li>{{userList}}</li> -->
+    <user-list-item v-for="(user, index) in userList" :key="user.id" :user="user" :index="index"></user-list-item>
   </section>
 </template>
 <script>
@@ -14,9 +13,6 @@ export default {
   },
   computed: {
     ...mapGetters(['userList']),
-    users:function() {
-      return this.userList
-    }
   }
 };
 </script>
